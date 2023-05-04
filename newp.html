@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WallyBot</title>
+    <link rel="stylesheet" href="css/newp.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <div class="icon">
+                <img src="images/bot.svg" alt="bot icon">
+                <a class="logo" href="#">Wally<span>Bot</span></a>
+            </div>
+            
+
+            <img id="mobile-cta" class="mobile-menu"  src="images/menu.svg" alt="open-navigation">
+
+            <nav>
+
+                <img id="mobile-exit" class="mobile-menu-exit" src="images/exit.svg" alt="exit-navigation">
+                <ul class="primary-nav">
+                    <li class="current"><a href="home.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+                <ul class="secondary-nav">
+                    <li class="login"><a href="login.html">Log In</a></li>
+                    <li class="signup"><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="right-col">
+                <h2>CREATE NEW PASSWORD</h2>
+                <p style="font-size: .6em;">Your new password must be different from the previously used ones.</p>
+
+                <form id="signup-form" onsubmit="return validateForm()">
+                    <div class="input-icons">
+                        <i class="fa fa-lock icon"></i>               
+                        <input class="input-field" type="password" id="password" name="password" placeholder="New Password" required>
+                        <span class="password-toggle" onclick="togglePassword('password')">
+                            <i class="fa fa-eye"></i>
+                          </span>
+                    </div>
+
+                    <div class="input-icons">
+                        <i class="fa fa-lock icon"></i>
+                        <input class="input-field" type="password" id="confirm-password" name="password" placeholder="Confirm New Password" required>
+                        <span class="password-toggle" onclick="togglePassword('confirm-password')">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="submit-button">
+                        <a href=""><input type="submit" value="RESET PASSWORD"></a>
+                    </div>                
+                    <div id="response"></div>
+                    
+                </form>
+                <div id="response"></div>
+                <a style="text-decoration: underline;" href="login.html">Back to Login</a>
+            </div>
+            
+
+        </div>
+        <div class="connect">
+            <p>Connect with us : </p>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+        </div>
+
+        <div class="copyright">
+            <p>&#169 2023 All Right Reserved Wally<span>Bot</span></p>
+        </div>
+
+        
+    </section>
+
+    <script>
+
+        const mobileBtn = document.getElementById('mobile-cta')
+                nav = document.querySelector('nav')
+                mobileBtnExit = document.getElementById('mobile-exit');
+
+        mobileBtn.addEventListener('click', () => {
+            nav.classList.add('menu-btn');
+        })
+
+        mobileBtnExit.addEventListener('click', () => {
+            nav.classList.remove('menu-btn');
+        })
+
+        
+        function validateForm() {
+            const response = document.getElementById("response");
+            
+            // Get form inputs
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+
+            // Validate password
+            if (password.length < 8) {
+                response.innerHTML = ("*Password must be at least 8 characters long.");
+                return false;
+            }
+
+            // Validate confirm password
+            if (password !== confirmPassword) {
+                response.innerHTML = ("*Passwords do not match.");
+                return false;
+            }
+
+            // All inputs are valid
+            return true;
+        }
+
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const passwordToggle = passwordInput.nextElementSibling;
+            const passwordType = passwordInput.getAttribute("type");
+
+            if (passwordType === "password") {
+                passwordInput.setAttribute("type", "text");
+                passwordToggle.classList.add("active");
+            } else {
+                passwordInput.setAttribute("type", "password");
+                passwordToggle.classList.remove("active");
+            }
+        }
+
+
+    </script>
+
+    <!-- <script src="home.js"></script> -->
+</body>
+</html>
